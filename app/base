@@ -1,0 +1,57 @@
+-- Creación de la tabla CATEGORIA
+CREATE TABLE CATEGORIA (
+    CategoriaID INTEGER PRIMARY KEY AUTOINCREMENT,
+    NombreCategoria TEXT
+);
+
+-- Creación de la tabla CLIENTES
+CREATE TABLE CLIENTES (
+    ClienteID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nombre TEXT,
+    Apellido TEXT,
+    Direccion TEXT,
+    Telefono TEXT,
+    CorreoElectronico TEXT
+);
+
+-- Creación de la tabla PROVEEDORES
+CREATE TABLE PROVEEDORES (
+    ProveedorID INTEGER PRIMARY KEY AUTOINCREMENT,
+    NombreEmpresa TEXT,
+    Contacto TEXT,
+    Direccion TEXT,
+    Telefono TEXT,
+    CorreoElectronico TEXT
+);
+
+-- Creación de la tabla PRODUCTOS
+CREATE TABLE PRODUCTOS (
+    ProductoID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nombre TEXT,
+    Descripcion TEXT,
+    Precio REAL,
+    Stock INTEGER,
+    CategoriaID INTEGER,
+    FOREIGN KEY (CategoriaID) REFERENCES CATEGORIA(CategoriaID)
+);
+
+-- Creación de la tabla VENTA
+CREATE TABLE VENTA (
+    VentaID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ClienteID INTEGER,
+    FechaVenta TEXT,
+    TotalVenta REAL,
+    FOREIGN KEY (ClienteID) REFERENCES CLIENTES(ClienteID)
+);
+
+-- Creación de la tabla VENTADETALLE
+CREATE TABLE VENTADETALLE (
+    VentaDetalleID INTEGER PRIMARY KEY AUTOINCREMENT,
+    VentaID INTEGER,
+    ProductoID INTEGER,
+    Cantidad INTEGER,
+    PrecioUnitario REAL,
+    Subtotal REAL,
+    FOREIGN KEY (VentaID) REFERENCES VENTA(VentaID),
+    FOREIGN KEY (ProductoID) REFERENCES PRODUCTOS(ProductoID)
+);

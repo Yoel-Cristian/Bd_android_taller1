@@ -1,0 +1,69 @@
+<!-- res/layout/activity_main.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
+
+    <TextView
+            android:id="@+id/titulo_cliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clientes"
+            android:textSize="44sp"
+            android:textColor="#000000"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/bungee_shade"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textAlignment="center"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+
+        <Button
+                android:id="@+id/btnInsertar2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Insertar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:onClick="onInsertarClick" />
+
+        <Button
+                android:id="@+id/btnActualizar2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Actualizar"
+                android:layout_below="@id/btnInsertar2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:onClick="onActualizarClick" />
+
+        <Button
+                android:id="@+id/btnMostrar2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Mostrar"
+                android:layout_below="@id/btnActualizar2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:onClick="onMostrarClick" />
+
+        <Button
+                android:id="@+id/btnEliminar2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Eliminar"
+                android:layout_below="@id/btnMostrar2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:onClick="onEliminarClick" />
+    </LinearLayout>
+
+</RelativeLayout>

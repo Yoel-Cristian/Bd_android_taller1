@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
+
+
+
+    <ImageView
+            android:id="@+id/backgroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/fondo" />
+
+    <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mi Menú"
+            android:textSize="44sp"
+            android:textColor="#FAFAFB"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/bungee_shade"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textAlignment="center"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+
+        <Button
+                android:id="@+id/btnProductos"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Productos"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onButtonClick"/>
+
+        <Button
+                android:id="@+id/btnClientes"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Clientes"
+                android:layout_below="@id/btnProductos"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onButtonClick"/>
+
+        <Button
+                android:id="@+id/btnProveedores"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Proveedores"
+                android:layout_below="@id/btnClientes"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onButtonClick"/>
+
+        <Button
+                android:id="@+id/btnCategorias"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Categorías"
+                android:layout_below="@id/btnProveedores"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onButtonClick"/>
+
+        <Button
+                android:id="@+id/btnVentas"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Ventas"
+                android:layout_below="@id/btnCategorias"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onButtonClick"/>
+
+        <Button
+                android:id="@+id/btnDetallesVenta"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Detalles de Venta"
+                android:layout_below="@id/btnVentas"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onButtonClick"/>
+        <Button
+                android:id="@+id/salir"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Salir"
+                android:layout_below="@id/btnVentas"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onButtonClick"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
