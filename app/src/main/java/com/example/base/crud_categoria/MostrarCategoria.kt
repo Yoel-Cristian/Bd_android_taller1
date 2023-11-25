@@ -3,6 +3,8 @@ package com.example.base.crud_categoria
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.*
 import com.android.volley.Request
@@ -13,6 +15,9 @@ import com.android.volley.toolbox.Volley
 import com.example.base.Ip
 import com.example.base.R
 import org.json.JSONArray
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class MostrarCategoria : AppCompatActivity() {
     private lateinit var spinnerProductos: Spinner
@@ -24,23 +29,34 @@ class MostrarCategoria : AppCompatActivity() {
         var selectedProducto = ""
 
 
-        // Inicializar el Spinner
-        spinnerProductos = findViewById(R.id.spinnerProductos)
-        cargarNombresProductos()
+        val timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                // Actualizar la interfaz de usuario en el hilo principal
+                Handler(Looper.getMainLooper()).post {
+                    // Coloca aquí el código para actualizar la interfaz de usuario
+                    // Por ejemplo, podrías recargar datos, cambiar vistas, etc.
+
+                    // Inicializar el Spinner
+                    spinnerProductos = findViewById(R.id.spinnerProductos)
+                    cargarNombresProductos()
 
 
-        //Cada ves que se seleccione un item delllllllll spinner
-        spinnerProductos.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // Código que se ejecutará cuando se seleccione un elemento.
-                var selectedProduct = parent?.getItemAtPosition(position).toString()
-                selectedProducto = selectedProduct
+                    //Cada ves que se seleccione un item delllllllll spinner
+                    spinnerProductos.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                            // Código que se ejecutará cuando se seleccione un elemento.
+                            var selectedProduct = parent?.getItemAtPosition(position).toString()
+                            selectedProducto = selectedProduct
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>?) {
+                            // Código que se ejecutará cuando no se seleccione nada.
+                        }
+                    }
+                }
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Código que se ejecutará cuando no se seleccione nada.
-            }
-        }
+        }, 0, 5000)
 
         val eliminar1=findViewById<Button>(R.id.eliminar_ca)
         eliminar1.setOnClickListener {

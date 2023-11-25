@@ -67,16 +67,12 @@ class ActualizarProducto : AppCompatActivity() {
             val stock = etStock.text.toString().toInt()
             val categoriaID = selectedProducto  // Obtener el elemento seleccionado
             insertarDatos(Ip.id_actualizar,nombre, descripcion, precio, stock, categoriaID)
-            val toast = Toast.makeText(this, "Se Actualizaron datos correctamente", Toast.LENGTH_SHORT)
-            toast.show()
-            Handler(Looper.getMainLooper()).postDelayed({
-                toast.cancel()
-            }, 2000)
+
             Ip.id_actualizar=""
-            val intent = Intent(this, MostrarProducto::class.java)
             CoroutineScope(Dispatchers.Main).launch {
                 delay(2000) // Esperar 2 segundos
-                startActivity(intent)
+                finish()
+finish()
             }
         }
     }
@@ -120,52 +116,69 @@ class ActualizarProducto : AppCompatActivity() {
         stock: Int,
         categoriaID: String
     ) {
-        // Crear instancia de RequestQueue utilizando Volley
-        val requestQueue: RequestQueue = Volley.newRequestQueue(this)
-        // En cualquier otra clase
 
-        var ip1= Ip.ip
-        val url = "http://$ip1/demil/actualizar_producto.php"  // Reemplaza con la URL de tu script PHP
+        if(id_pro.isNullOrBlank() && nombre.isNullOrBlank()  && descripcion.isNullOrBlank() && categoriaID.isNullOrBlank()){
 
-        // Crear una solicitud de cadena POST usando Volley
-        val stringRequest = object : StringRequest(
-            Request.Method.POST, url,
-            Response.Listener<String> { response ->
-                // Manejar la respuesta exitosa del servidor
-                // Puedes mostrar un mensaje de éxito o realizar otras acciones aquí
-            },
-            Response.ErrorListener {
-                // Manejar errores de la solicitud
-                // Puedes mostrar un mensaje de error o realizar otras acciones aquí
-            }) {
+            // Crear instancia de RequestQueue utilizando Volley
+            val requestQueue: RequestQueue = Volley.newRequestQueue(this)
+            // En cualquier otra clase
 
-            override fun getParams(): Map<String, String> {
-                val params = HashMap<String, String>()
-                params["id"]=id_pro
-                params["nombre"] = nombre
-                params["descripcion"] = descripcion
-                params["precio"] = precio.toString()
-                params["stock"] = stock.toString()
-                params["categoriaID"] = categoriaID
-                return params
-            }
+            var ip1= Ip.ip
+            val url = "http://$ip1/demil/actualizar_producto.php"  // Reemplaza con la URL de tu script PHP
 
-            @Throws(UnsupportedEncodingException::class)
-            override fun getBody(): ByteArray {
-                val params = getParams()
-                val body = StringBuilder()
-                for ((key, value) in params) {
-                    body.append(URLEncoder.encode(key, "UTF-8"))
-                        .append("=")
-                        .append(URLEncoder.encode(value, "UTF-8"))
-                        .append("&")
+            // Crear una solicitud de cadena POST usando Volley
+            val stringRequest = object : StringRequest(
+                Request.Method.POST, url,
+                Response.Listener<String> { response ->
+                    // Manejar la respuesta exitosa del servidor
+                    // Puedes mostrar un mensaje de éxito o realizar otras acciones aquí
+                },
+                Response.ErrorListener {
+                    // Manejar errores de la solicitud
+                    // Puedes mostrar un mensaje de error o realizar otras acciones aquí
+                }) {
+
+                override fun getParams(): Map<String, String> {
+                    val params = HashMap<String, String>()
+                    params["id"]=id_pro
+                    params["nombre"] = nombre
+                    params["descripcion"] = descripcion
+                    params["precio"] = precio.toString()
+                    params["stock"] = stock.toString()
+                    params["categoriaID"] = categoriaID
+                    return params
                 }
-                return body.toString().toByteArray(Charsets.UTF_8)
+
+                @Throws(UnsupportedEncodingException::class)
+                override fun getBody(): ByteArray {
+                    val params = getParams()
+                    val body = StringBuilder()
+                    for ((key, value) in params) {
+                        body.append(URLEncoder.encode(key, "UTF-8"))
+                            .append("=")
+                            .append(URLEncoder.encode(value, "UTF-8"))
+                            .append("&")
+                    }
+                    return body.toString().toByteArray(Charsets.UTF_8)
+                }
             }
+
+            // Agregar la solicitud a la cola
+            requestQueue.add(stringRequest)
+            val toast = Toast.makeText(this, "Se Actualizaron datos correctamente", Toast.LENGTH_SHORT)
+            toast.show()
+            Handler(Looper.getMainLooper()).postDelayed({
+                toast.cancel()
+            }, 2000)
+        }else{
+            val toast = Toast.makeText(this, "No se actualizo correctamente", Toast.LENGTH_SHORT)
+            toast.show()
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                toast.cancel()
+            }, 2000)
         }
 
-        // Agregar la solicitud a la cola
-        requestQueue.add(stringRequest)
     }
 
 

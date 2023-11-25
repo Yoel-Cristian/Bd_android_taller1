@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_main.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:text="Formulario"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/ti_venta"
+            android:fontFamily="@font/bungee_shade"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+    <EditText
+            android:id="@+id/editTextClienteID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ti_venta"
+
+            android:hint="ClienteID" />
+
+    <EditText
+            android:id="@+id/editTextFechaVenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:layout_below="@id/editTextClienteID"
+            android:hint="FechaVenta" />
+
+    <EditText
+            android:id="@+id/editTextTotalVenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextFechaVenta"
+            android:hint="TotalVenta" />
+
+    <Button
+            android:id="@+id/btnRegistrarVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextTotalVenta"
+            android:layout_centerHorizontal="true"
+            android:text="Registrar Venta" />
+
+</RelativeLayout>

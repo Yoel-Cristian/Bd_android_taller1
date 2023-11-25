@@ -16,7 +16,7 @@ class OpcionesIngreso : AppCompatActivity() {
     private lateinit var textoContrasena: TextView
     private lateinit var btnIngresarCliente: Button
     private lateinit var btnIngresarAdmind: Button
-
+    private lateinit var registrar: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_opciones_ingreso)
@@ -25,8 +25,13 @@ class OpcionesIngreso : AppCompatActivity() {
         textoContrasena = findViewById(R.id.editTextPassword)
         btnIngresarCliente = findViewById(R.id.usuario)
         btnIngresarAdmind = findViewById(R.id.adm)
+        registrar = findViewById(R.id.registrar)
 
 
+        registrar.setOnClickListener {
+            val intent = Intent(this, Registro::class.java)
+            startActivity(intent)
+        }
 
         btnIngresarCliente.setOnClickListener {
             val nombreUsuario = textoNombre.text.toString()

@@ -68,8 +68,21 @@
             android:text="Entrar como Personal"
             android:layout_below="@id/usuario"
             android:layout_marginTop="16dp"
-            android:background="#388E3C"
+            android:background="#FF5722"
             android:textColor="#FFFFFF"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:backgroundTint="#FF9800"/>
+
+    <Button
+            android:id="@+id/registrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar"
+            android:layout_below="@id/adm"
+
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:padding="16dp"
+            android:backgroundTint="#8BC34A"/>
 
 </RelativeLayout>

@@ -38,17 +38,11 @@ class ActualizarCategoria : AppCompatActivity() {
             val nombreCA = nombre.text.toString()
             val descripcionCA = descripcion.text.toString()
             insertarDatos(Ip.id_actualizar,nombreCA, descripcionCA)
-            val toast = Toast.makeText(this, "Se Actualizaron datos correctamente", Toast.LENGTH_SHORT)
-            toast.show()
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                toast.cancel()
-            }, 2000)
             Ip.id_actualizar=""
-            val intent = Intent(this, MostrarCategoria::class.java)
             CoroutineScope(Dispatchers.Main).launch {
                 delay(2000) // Esperar 2 segundos
-                startActivity(intent)
+                finish()
             }
         }
 
@@ -59,48 +53,66 @@ class ActualizarCategoria : AppCompatActivity() {
         nombre: String,
         descripcion: String
     ) {
-        // Crear instancia de RequestQueue utilizando Volley
-        val requestQueue: RequestQueue = Volley.newRequestQueue(this)
-        // En cualquier otra clase
-        var ip1= Ip.ip
 
 
-        val url = "http://$ip1/demil/actualizar_categoria.php"  // Reemplaza con la URL de tu script PHP
+        if (id_a.isNotBlank() && nombre.isNotBlank() && descripcion.isNotBlank()){
+            val requestQueue: RequestQueue = Volley.newRequestQueue(this)
+            // En cualquier otra clase
+            var ip1= Ip.ip
 
-        // Crear una solicitud de cadena POST usando Volley
-        val stringRequest = object : StringRequest(
-            Request.Method.POST, url,
-            Response.Listener<String> { response ->
-                // Manejar la respuesta exitosa del servidor
-                // Puedes mostrar un mensaje de éxito o realizar otras acciones aquí
-            },
-            Response.ErrorListener {
-                // Manejar errores de la solicitud
-                // Puedes mostrar un mensaje de error o realizar otras acciones aquí
-            }) {
 
-            override fun getParams(): Map<String, String> {
-                val params = HashMap<String, String>()
-                params["id"] = id_a
-                params["nombre"] = nombre
-                params["descripcion"] = descripcion
+            val url = "http://$ip1/demil/actualizar_categoria.php"  // Reemplaza con la URL de tu script PHP
 
-                return params
-            }
+            // Crear una solicitud de cadena POST usando Volley
+            val stringRequest = object : StringRequest(
+                Request.Method.POST, url,
+                Response.Listener<String> { response ->
+                    // Manejar la respuesta exitosa del servidor
+                    // Puedes mostrar un mensaje de éxito o realizar otras acciones aquí
+                },
+                Response.ErrorListener {
+                    // Manejar errores de la solicitud
+                    // Puedes mostrar un mensaje de error o realizar otras acciones aquí
+                }) {
 
-            @Throws(UnsupportedEncodingException::class)
-            override fun getBody(): ByteArray {
-                val params = getParams()
-                val body = StringBuilder()
-                for ((key, value) in params) {
-                    body.append(URLEncoder.encode(key, "UTF-8"))
-                        .append("=")
-                        .append(URLEncoder.encode(value, "UTF-8"))
-                        .append("&")
+                override fun getParams(): Map<String, String> {
+                    val params = HashMap<String, String>()
+                    params["id"] = id_a
+                    params["nombre"] = nombre
+                    params["descripcion"] = descripcion
+
+                    return params
                 }
-                return body.toString().toByteArray(Charsets.UTF_8)
+
+                @Throws(UnsupportedEncodingException::class)
+                override fun getBody(): ByteArray {
+                    val params = getParams()
+                    val body = StringBuilder()
+                    for ((key, value) in params) {
+                        body.append(URLEncoder.encode(key, "UTF-8"))
+                            .append("=")
+                            .append(URLEncoder.encode(value, "UTF-8"))
+                            .append("&")
+                    }
+                    return body.toString().toByteArray(Charsets.UTF_8)
+                }
             }
+            requestQueue.add(stringRequest)
+
+            val toast = Toast.makeText(this, "Se Actualizaron datos correctamente", Toast.LENGTH_SHORT)
+            toast.show()
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                toast.cancel()
+            }, 2000)
+        }else{
+            val toast = Toast.makeText(this, "No se actualizo correctamente", Toast.LENGTH_SHORT)
+            toast.show()
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                toast.cancel()
+            }, 2000)
         }
-        requestQueue.add(stringRequest)
+
     }
 }
