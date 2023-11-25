@@ -2,7 +2,6 @@
 MySQL en android
 
 
-![ANDROID](https://unaaldia.hispasec.com/wp-content/uploads/2015/09/2e303-android-logo.png)
 
 # Aplicacion Para Gestion de Tienda
 
@@ -13,6 +12,7 @@ aplicación CRUD para gestionar tablas de productos, categorías, clientes, regi
 ## Integrantes del Grupo
 ![UAJMS](https://www.uajms.edu.bo/wp-content/uploads/2022/05/logowebl-1.png)
 
+INTEGRANTES DEL GRUPOS:
 
 - Yoel Cristian Quispe Diaz
 - Demilson Calivar Pizarro
@@ -20,7 +20,10 @@ aplicación CRUD para gestionar tablas de productos, categorías, clientes, regi
 
 Estudiantes de la carrera de Ingeniería Informática en la Universidad Autónoma Juan Misael Saracho.
 
+
 ## Instalación
+
+![ANDROID](https://unaaldia.hispasec.com/wp-content/uploads/2015/09/2e303-android-logo.png)
 
 Se necesita de la carpeta de "Recursos MySQL y PHP" para el funcionamiento y conexion con la base de datos
 
